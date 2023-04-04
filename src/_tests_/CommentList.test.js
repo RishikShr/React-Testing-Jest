@@ -1,9 +1,5 @@
-// import {render,screen, fireEvent} from '@testing-library/react'
-// import CommetList from '../components/CommetList';
-
-import { screen , render } from "@testing-library/react"
-import CommentList from "../components/CommentList"
-
+import { screen, render } from "@testing-library/react";
+import CommentList from "../components/CommentList";
 
 // test('commnets are not available',()=>{
 //     render(<CommetList allcomments={[]} />)
@@ -25,22 +21,25 @@ import CommentList from "../components/CommentList"
 
 // })
 
-test('comments are not available',()=>{
-    render(<CommentList allcomments={[]}/>)
-    const h2Element = screen.getByText("comments are not available",{exact:false})
-    expect(h2Element).toBeInTheDocument()
-})
+test("comments are not available", () => {
+  render(<CommentList allcomments={[]} />);
+  const h2Element = screen.getByText("comments are not available", {
+    exact: false,
+  });
+  expect(h2Element).toBeInTheDocument();
+});
 const comments = [
-    {id:'1',text:'Comment 1'},
-    {id:'2',text:'Comment 2'}
-]
-test('comments are available',()=>{
-    
-    render(<CommentList allcomments={comments}/>)
-    const h2Element = screen.queryByText("comments are not available",{exact:false})
-    expect(h2Element).not.toBeInTheDocument()
+  { id: "1", text: "Comment 1" },
+  { id: "2", text: "Comment 2" },
+];
+test("comments are available", () => {
+  render(<CommentList allcomments={comments} />);
+  const h2Element = screen.queryByText("comments are not available", {
+    exact: false,
+  });
+  expect(h2Element).not.toBeInTheDocument();
 
-    const commentsList = screen.getAllByRole('listitem')
-    expect(commentsList.length).toBe(comments.length)  //Primitive value
-    // expect( commentsList.length).toEqual(2)  // for object,array
-})
+  const commentsList = screen.getAllByRole("listitem");
+  expect(commentsList.length).toBe(comments.length); //Primitive value
+  // expect( commentsList.length).toEqual(2)  // for object,array
+});

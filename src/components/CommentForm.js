@@ -9,20 +9,20 @@ const CommentForm = ({setComments}) => {
   setText('')
  }
 
-  // const postComment = async ()=>{
-  //   const res =  await fetch('http://localhost:5000/addcomment',{
-  //      method:"post",
-  //      headers:{
-  //        'Content-Type':"application/json"
-  //      },
-  //      body:JSON.stringify({
-  //        text:text
-  //      })
-  //    })
-  //      const result =  await res.json()
-  //     setComments((prev)=>[...prev,result])
-  //     setText("")
-  // }
+  const postComment = async ()=>{
+    const res =  await fetch('http://localhost:5000/addcomment',{
+       method:"post",
+       headers:{
+         'Content-Type':"application/json"
+       },
+       body:JSON.stringify({
+         text:text
+       })
+     })
+       const result =  await res.json()
+      setComments((prev)=>[...prev,result])
+      setText("")
+  }
 
   return (
     <div>
@@ -43,7 +43,7 @@ const CommentForm = ({setComments}) => {
           </label>
          <button 
           disabled={!checked || !text} 
-          onClick={addComments}
+          onClick={postComment}
          >
            comment
          </button>
