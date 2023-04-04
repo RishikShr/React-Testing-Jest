@@ -2,7 +2,8 @@
 // import CommentForm from '../components/CommentForm';
 // import userEvent  from '@testing-library/user-event'
 
-import { fireEvent, render } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
+// import { userEvent } from "@testing-library/user-event/dist/types/setup"
 import CommentForm from "../components/CommentForm"
 
 // test('Initial Conditions',()=>{
@@ -36,7 +37,7 @@ test('Intial State Comment',()=>{
     render(<CommentForm/>)
     const commentInput = screen.getByRole("textbox")
     expect(commentInput).toBeInTheDocument()
-    const checkbox = screen.getByLabelText(' i agree to terms and conditions',{exact:false})
+    const checkbox = screen.getByLabelText('i agree to terms and conditions',{exact:false})
     expect(checkbox).toBeInTheDocument()
     const submitButton = screen.getByRole("button",{name:'comment',exact:false})
     expect(submitButton).toBeDisabled()
@@ -44,16 +45,18 @@ test('Intial State Comment',()=>{
 
 test("Enable submit button on type and checkbox click",()=>{
     render(<CommentForm/>)
-    const checkbox = screen.getByLabelText(' i agree to terms and conditions',{exact:false});
+    const checkbox = screen.getByLabelText('i agree to terms and conditions',{exact:false});
     const submitButton = screen.getByRole("button",{name:'comment',exact:false});
-    const commentInput = screen.getByPlaceholderText('write your comment here',{exact:false});
+    // const commentInput = screen.getByRole("textbox")
+     const commentInput = screen.getByPlaceholderText('write your comment here',{exact:false});
     
     fireEvent.change(commentInput,{target:{value:'write something'}});
+    // userEvent.type(commentInput,"something")
     fireEvent.click(checkbox)
-    
+    // userEvent.click(checkbox)
     expect(submitButton).toBeEnabled()
     
-        
+
     fireEvent.click(checkbox)
     expect(submitButton).toBeDisabled()
 })

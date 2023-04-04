@@ -1,18 +1,17 @@
 import CommentForm from "./components/CommentForm";
-import CommetList from "./components/CommetList";
+import CommetList from "./components/CommentList";
 import { useState } from "react";
 
 function App() {
+  const comments = [
+    {id:'1',text:'test comment 1'},
+    {id:'2',text:'test comment 2'}
+]
   return (
     <div data-testid="myrootdiv">
         <h1>Testingg Basic</h1>
-        <input text ='' placeholder="type here" />
-        <button >click on me</button>
-        <ul>
-          <li></li>
-          <li></li>
-          
-          </ul>
+        <CommentForm/>
+        <CommetList allcomments={comments}/>
     </div>
   );
 }
